@@ -12,6 +12,8 @@ app.all('/', function (req, res) {
   res.json({message: 'Hello, World!'});
 });
 
+app.use('/slack', require('./slack'));
+
 app.listen(8080, function () {
   console.log('API listening on port 8080.');
 });
