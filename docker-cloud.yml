@@ -1,6 +1,7 @@
 eple-api:
   autoredeploy: true
   environment:
+    - FORCE_SSL=yes
     - NODE_ENV=production
     - 'VIRTUAL_HOST=http://api.eple.re*,https://api.eple.re*'
     - VIRTUAL_HOST_WEIGHT=20
