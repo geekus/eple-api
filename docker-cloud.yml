@@ -11,3 +11,9 @@ eple-api:
     - '8080'
   image: 'geekus/eple-api'
   restart: always
+  volumes_from:
+    - 'secrets:ro'
+secrets:
+  image: 'geekus/secrets'
+  volumes:
+    - /secrets
