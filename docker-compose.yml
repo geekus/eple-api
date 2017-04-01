@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  node:
+    image: node:7
+    network_mode: 'bridge'
+    working_dir: /usr/src/app
+    ports:
+      - '8080'
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - NODE_ENV=development
+      - NPM_CONFIG_LOGLEVEL=info
+      - NPM_CONFIG_PROGRESS=false
+      - NPM_CONFIG_SPIN=false
+      - VIRTUAL_HOST=api.eple.local
+      - VIRTUAL_PORT=8080
+    logging:
+      options:
+        max-size: '500k'
+    command: npm start

@@ -1,0 +1,12 @@
+eple-api:
+  autoredeploy: true
+  environment:
+    - NODE_ENV=production
+    - 'VIRTUAL_HOST=http://api.eple.re*,https://api.eple.re*'
+    - VIRTUAL_HOST_WEIGHT=20
+    - VIRTUAL_PATH=/
+    - VIRTUAL_PORT=8080
+  expose:
+    - '8080'
+  image: 'geekus/eple-api'
+  restart: always
