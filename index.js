@@ -14,6 +14,20 @@ app.all('/', function (req, res) {
 
 app.use('/slack', require('./slack'));
 
-app.listen(8080, function () {
-  console.log('API listening on port 8080.');
+app.use((req, res, next) => {
+  res.status(404).json({message: 'Could not find that, sorry.'});
 });
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({message: 'Something went wrong.'});
+});
+
+// Run server if not in context of test or export as module
+if (!module.parent) {
+  app.listen(8080, function () {
+    console.log('API listening on port 8080.');
+  });
+} else {
+  module.exports = app;
+}

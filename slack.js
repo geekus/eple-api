@@ -3,6 +3,7 @@
 const express = require('express');
 const router = new express.Router();
 
+const r = require('./lib/rethinkdb');
 const secrets = require('./lib/secrets');
 
 router.use((req, res, next) => {
@@ -15,6 +16,27 @@ router.use((req, res, next) => {
   }
 
   next();
+});
+
+router.post('/event', (req, res, next) => {
+  r
+    .slackEvents
+    .insert({
+      reaction: req.body.reaction,
+    })
+    .run(r.c)
+    .then((result) => {
+      res.json({
+        message: 'Ok',
+        data: {
+          id: result.generated_keys[0],
+          reaction: req.body.reaction,
+        },
+      });
+    })
+    .catch((err) => {
+      throw new Error(err);
+    });
 });
 
 module.exports = router;

@@ -6,7 +6,8 @@
   "scripts": {
     "nsp": "nsp check",
     "start": "node index",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -b -c -t 3000 --check-leaks -R tap -r test/support/env test/*.js test/**/*.js",
+    "test:watch": "mocha -w -b -c -t 3000 --check-leaks -R progress -r test/support/env test/*.js test/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,12 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
-    "nsp": "^2.6.3"
+    "nsp": "^2.6.3",
+    "rethinkdb": "^2.3.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "supertest": "^3.0.0"
   }
 }

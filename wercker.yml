@@ -1,6 +1,9 @@
 box: node:7
 
 build:
+  services:
+    - name: rethinkdb
+      id: rethinkdb:2
   steps:
     - script:
         name: echo nodejs information
@@ -9,6 +12,7 @@ build:
           echo "npm version $(npm -v) running"
           echo "npm registry $(npm config get registry)"
     - npm-install
+    - npm-test
     - script:
         name: node security project
         code: |
