@@ -30,7 +30,7 @@ router.post('/event', (req, res, next) => {
         message: 'Ok',
         data: {
           id: result.generated_keys[0],
-          reaction: req.body.reaction,
+          reaction: req.body.event.reaction,
         },
       });
     })
