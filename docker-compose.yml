@@ -31,6 +31,8 @@ services:
       - '28015'
     ports:
       - '8181:8080'
+    volumes:
+      - /data
   secrets:
     image: 'geekus/secrets'
     volumes:
