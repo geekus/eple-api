@@ -22,7 +22,7 @@ router.post('/event', (req, res, next) => {
   r
     .slackEvents
     .insert({
-      reaction: req.body.reaction,
+      reaction: req.body.event.reaction,
     })
     .run(r.c)
     .then((result) => {

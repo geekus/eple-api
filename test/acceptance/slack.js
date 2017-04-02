@@ -13,7 +13,10 @@ describe('slack', () => {
 
     request(app)
       .post('/slack/event')
-      .send(fixtures.events.reaction)
+      .send(Object.assign(
+        fixtures.events.meta,
+        {event: fixtures.events.reaction}
+      ))
       .set('Accept', 'application/json')
       .expect(200)
       .then((res) => {
